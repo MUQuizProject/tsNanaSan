@@ -9,6 +9,9 @@ body {
 h1 {
   color: #fff; }
 
+label {
+  color: #fff; }
+
 .player-false {
   float: left;
   width: 6rem;
