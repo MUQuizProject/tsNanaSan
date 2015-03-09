@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'YuGo-Medium';
+  src: url('/Library/Fonts/Yu Gothic Bold.otf') format('otf'); }
+
+body {
+  font-family: 'YuGo-Medium';
+  background: #000; }
+
+h1 {
+  color: #fff; }
+
+.player-false {
+  float: left;
+  width: 6rem;
+  border-style: solid;
+  border-color: #000;
+  border-width: 0.2rem; }
+
+.player-true {
+  float: left;
+  width: 6rem;
+  border-style: solid;
+  border-color: #fff #000 #000 #000;
+  border-width: 0.2rem; }
+
+.id {
+  text-align: center;
+  font-size: 2rem;
+  line-height: 6rem;
+  color: #fff; }
+
+.name {
+  -webkit-writing-mode: vertical-rl;
+  font-size: 4rem;
+  line-height: 6rem;
+  height: 20rem;
+  color: #fff; }
+
+.right-0 {
+  width: 6rem;
+  height: 6rem;
+  text-align: center;
+  font-size: 4rem;
+  background-color: #333;
+  color: #000;
+  border-radius: 3rem 3rem 3rem 3rem;
+  line-height: 6rem; }
+
+.right-1 {
+  width: 6rem;
+  height: 6rem;
+  text-align: center;
+  font-size: 4rem;
+  background-color: #0ff;
+  color: #000;
+  border-radius: 3rem 3rem 3rem 3rem;
+  line-height: 6rem; }
+
+.right-2 {
+  width: 6rem;
+  height: 6rem;
+  text-align: center;
+  font-size: 4rem;
+  background-color: #f0f;
+  color: #000;
+  border-radius: 3rem 3rem 3rem 3rem;
+  line-height: 6rem; }
+
+.misses {
+  font-size: 2rem;
+  text-align: center;
+  color: #fff;
+  line-height: 6rem; }

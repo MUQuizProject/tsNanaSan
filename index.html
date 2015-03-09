@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="seventhree">
+<head>
+	<title>7○3×クイズ	</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<script type="application/javascript" src="js/libs/angular.min.js"></script>
+	<script type="application/javascript" src="js/Main.js"></script>
+</head>
+<body ng-controller="fieldcontroller" ng-keydown="onKeyDown($event)">
+	<div>
+		<h1>7○3×クイズ</h1>
+	</div>
+	<div>
+		<form>
+			<label>
+				id:
+				<input type="text" ng-model="idtext">
+			</label>
+			<label>
+				name:
+				<input type="text" ng-model="name">
+			</label>
+			<button ng-click="addMember()">add a member</button>
+		</form>
+	</div>
+
+	<div>
+		<div ng-show="memberList.length == 0">
+			Add a member from the form above.
+		</div>
+		<div class="player-{{member.isSelected}}" ng-repeat="member in memberList" ng-click="toggleSelected(member)">
+			<div class="id">{{member.id}}</div>
+			<div class="name">{{member.name}}</div>
+			<div class="right-{{member.getState()}}">{{member.getState() == State.Lose ? "×" : member.getRight()}}</div>
+			<div class="misses">{{member.getMisses()}}×</div>
+			<div style="color: #fff;">{{member.getState()}}</div>
+			<div style="color: #fff;">{{member.isSelected ? "yes" : "no"}}</div>
+		</div>
+	</div>
+</body>
+</html>
