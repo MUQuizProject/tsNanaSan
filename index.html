@@ -33,8 +33,6 @@
 			<div class="name">{{member.name}}</div>
 			<div class="right-{{member.getState()}}">{{member.getState() == State.Lose ? "×" : member.getRight()}}</div>
 			<div class="misses">{{member.getMisses()}}×</div>
-			<div style="color: #fff;">{{member.getState()}}</div>
-			<div style="color: #fff;">{{member.isSelected ? "yes" : "no"}}</div>
 		</div>
 	</div>
 </body>
