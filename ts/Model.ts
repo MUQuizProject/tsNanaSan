@@ -117,6 +117,7 @@ module SevenThree.Model {
     }
 
     addMember(m: Member): void {this.mList.push(m);}
+    resetMembers(): void {this.mList = [];}
 
     get Members(): Member[] {return this.mList;}
     get qNumber(): number {return this.qNum;}

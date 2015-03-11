@@ -1,15 +1,13 @@
-@font-face {
-  font-family: 'YuGo-Medium';
-  src: url('/Library/Fonts/Yu Gothic Bold.otf') format('otf'); }
-
 body {
-  font-family: 'YuGo-Medium';
   background: #000; }
 
 h1 {
   color: #fff; }
 
 label {
+  color: #fff; }
+
+span {
   color: #fff; }
 
 .player-false {

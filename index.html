@@ -10,24 +10,34 @@
 	<div>
 		<h1>7○3×クイズ</h1>
 	</div>
-	<div>
+	<div ng-show="mode === 0">
 		<form>
 			<label>
-				id:
-				<input type="text" ng-model="idtext">
+				input:
+				<textarea ng-model="inputText"></textarea>
 			</label>
-			<label>
-				name:
-				<input type="text" ng-model="name">
-			</label>
-			<button ng-click="addMember()">add a member</button>
+			<button ng-click="addMemberTemporally()">add a member</button>
+			<button ng-click="mode = 1">
+				Playing mode
+			</button>
+		</form>
+		<p ng-repeat="member in tempMems">
+			<span>{{member.id}}</span>
+			<span>{{member.name}}</span>
+		</p>
+		<form>
+			<button ng-click="confirmMembers()">
+				confirm Members
+			</button>
+			<button ng-click="tempMems = []">
+				delete all Members
+			</button>
 		</form>
 	</div>
-
-	<div>
-		<div ng-show="memberList.length == 0">
-			Add a member from the form above.
-		</div>
+	<div ng-show="mode === 1">
+		<form>
+			<button ng-click="mode = 0">Input Mode</button>
+		</form>
 		<div class="player-{{member.isSelected}}" ng-repeat="member in memberList" ng-click="toggleSelected(member)">
 			<div class="id">{{member.id}}</div>
 			<div class="name">{{member.name}}</div>

@@ -139,6 +139,9 @@ var SevenThree;
             Field.prototype.addMember = function (m) {
                 this.mList.push(m);
             };
+            Field.prototype.resetMembers = function () {
+                this.mList = [];
+            };
             Object.defineProperty(Field.prototype, "Members", {
                 get: function () {
                     return this.mList;
@@ -228,22 +231,42 @@ var SevenThree;
 ///<reference path="./Model.ts" />
 var SevenThree;
 (function (SevenThree) {
+    (function (Mode) {
+        Mode[Mode["Input"] = 0] = "Input";
+        Mode[Mode["Playing"] = 1] = "Playing";
+    })(SevenThree.Mode || (SevenThree.Mode = {}));
+    var Mode = SevenThree.Mode;
     var Member = SevenThree.Model.Member;
     var Controller = (function () {
         function Controller($scope, field) {
             this.$scope = $scope;
             this.field = field;
-            console.log("constructor in Controller is called");
             this.$scope.qNumber = this.field.qNumber;
             this.$scope.memberList = this.field.Members;
-            this.$scope.addMember = this.addMember.bind(this);
+            this.$scope.tempMems = [new Member("a", 1), new Member("b", 2)];
+            this.$scope.addMemberTemporally = this.addMemberTemporally.bind(this);
+            this.$scope.confirmMembers = this.confirmMembers.bind(this);
             this.$scope.toggleSelected = this.toggleSelected.bind(this);
             this.$scope.onKeyDown = this.onKeyDown.bind(this);
+            this.$scope.mode = 0 /* Input */;
+            console.log(this.$scope.mode);
         }
-        Controller.prototype.addMember = function () {
-            console.log("addMember is called");
-            var m = new Member(this.$scope.name, parseInt(this.$scope.idtext));
-            this.field.addMember(m);
+        Controller.prototype.addMemberTemporally = function () {
+            var byLine = this.$scope.inputText.split("\n");
+            for (var i = 0; i < byLine.length; ++i) {
+                var spTxt = byLine[i].split(",");
+                var m = new Member(spTxt[1], parseInt(spTxt[0]));
+                this.$scope.tempMems.push(m);
+            }
+        };
+        Controller.prototype.deleteAllMembers = function () {
+            this.$scope.tempMems = [];
+        };
+        Controller.prototype.confirmMembers = function () {
+            this.field.resetMembers();
+            for (var i = 0; i < this.$scope.tempMems.length; ++i) {
+                this.field.addMember(this.$scope.tempMems[i]);
+            }
             this.$scope.qNumber = this.field.qNumber;
             this.$scope.memberList = this.field.Members;
         };

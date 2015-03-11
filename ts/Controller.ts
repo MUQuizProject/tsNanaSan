@@ -2,35 +2,62 @@
 ///<reference path="./Quiz.ts" />
 ///<reference path="./Model.ts" />
 
+
 module SevenThree {
+	export enum Mode {
+		Input,
+		Playing
+	}
+
 	import Field = Model.Field;
 	import Member = Model.Member;
 
 	export interface Scope extends ng.IScope {
-		idtext          : string;
-		name            : string;
-		qNumber         : number;
-		memberList      : Member[];
-		addMember()     : void;
-		toggleSelected(m: Member): void;
-		onKeyDown()		: void;
+		idtext               : string;
+		name                 : string;
+		inputText            : string;
+		qNumber              : number;
+		memberList           : Member[];
+		mode                 : Mode;
+		addMemberTemporally(): void;
+		deleteAllMembers()   : void;
+		confirmMembers()     : void;
+		toggleSelected(m:Member): void;
+		onKeyDown()          : void;
+		tempMems             : Member[];
 	}
 
 	export class Controller {
-		
 		constructor(public $scope: Scope, public field: Field) {
-			console.log("constructor in Controller is called");
 			this.$scope.qNumber        = this.field.qNumber;
 			this.$scope.memberList     = this.field.Members;
-			this.$scope.addMember      = this.addMember.bind(this);
+			this.$scope.tempMems       = [new Member("a",1),new Member("b",2)];
+			this.$scope.addMemberTemporally = this.addMemberTemporally.bind(this);
+			this.$scope.confirmMembers = this.confirmMembers.bind(this);
 			this.$scope.toggleSelected = this.toggleSelected.bind(this);
 			this.$scope.onKeyDown      = this.onKeyDown.bind(this);
+			this.$scope.mode           = Mode.Input;
+			console.log(this.$scope.mode);
 		}
 
-		addMember():void {
-			console.log("addMember is called");
-			var m: Member = new Member(this.$scope.name,parseInt(this.$scope.idtext));
-			this.field.addMember(m);
+		addMemberTemporally(): void {
+			var byLine: string[] = this.$scope.inputText.split("\n");
+			for (var i = 0; i < byLine.length; ++i) {
+				var spTxt: string[] = byLine[i].split(",");
+				var m: Member = new Member(spTxt[1],parseInt(spTxt[0]));
+				this.$scope.tempMems.push(m);
+			}
+		}
+
+		deleteAllMembers(): void {
+			this.$scope.tempMems = [];
+		}
+
+		confirmMembers(): void {
+			this.field.resetMembers();
+			for (var i = 0; i < this.$scope.tempMems.length; ++i){
+				this.field.addMember(this.$scope.tempMems[i]);
+			}
 			this.$scope.qNumber = this.field.qNumber;
 			this.$scope.memberList = this.field.Members;
 		}

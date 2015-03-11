@@ -1,14 +1,7 @@
 $textcolor: #fff;
 $colorlist: #333 #0ff #f0f;
 
-@font-face {
-	font-family: 'YuGo-Medium';
-	src: url('/Library/Fonts/Yu Gothic Bold.otf') format('otf');
-}
-
-
 body {
-	font-family: 'YuGo-Medium';
 	background: #000;
 }
 
@@ -17,6 +10,10 @@ h1 {
 }
 
 label {
+	color: $textcolor;
+}
+
+span {
 	color: $textcolor;
 }
 
