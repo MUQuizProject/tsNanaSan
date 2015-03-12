@@ -17,16 +17,20 @@ span {
 	color: $textcolor;
 }
 
-.player-false {
-	float: left;
+.board {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.player {
 	width: 6rem;
 	border-style: solid;
 	border-color: #000;
 	border-width: 0.2rem;
 }
 
-.player-true {
-	float: left;
+.player-s {
 	width: 6rem;
 	border-style: solid;
 	border-color: #fff #000 #000 #000;

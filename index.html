@@ -38,11 +38,13 @@
 		<form>
 			<button ng-click="mode = 0">Input Mode</button>
 		</form>
-		<div class="player-{{member.isSelected}}" ng-repeat="member in memberList" ng-click="toggleSelected(member)">
-			<div class="id">{{member.id}}</div>
-			<div class="name">{{member.name}}</div>
-			<div class="right-{{member.getState()}}">{{member.getState() == State.Lose ? "×" : member.getRight()}}</div>
-			<div class="misses">{{member.getMisses()}}×</div>
+		<div class="board">
+			<div ng-class="(member.isSelected) ? 'player-s' : 'player'" ng-repeat="member in memberList" ng-click="toggleSelected(member)">
+				<div class="id">{{member.id}}</div>
+				<div class="name">{{member.name}}</div>
+				<div class="right-{{member.getState()}}">{{member.getState() == State.Lose ? "×" : member.getRight()}}</div>
+				<div class="misses">{{member.getMisses()}}×</div>
+			</div>
 		</div>
 	</div>
 </body>
