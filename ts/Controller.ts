@@ -74,8 +74,8 @@ module SevenThree {
 	    this.$scope.memberList = this.field.Members;
 	}
 	//キーが押されたときの挙動
-	onKeyDown(): void {
-	    switch(event.keyCode) {
+	onKeyDown(e: KeyboardEvent): void {
+	    switch(e.which) {
 	    case 79://oは正解
 		this.field.answerRight();
 		break;

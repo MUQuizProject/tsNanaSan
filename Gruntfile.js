@@ -3,7 +3,7 @@ module.exports = function  (grunt) {
 		typescript: {
 			main: {
 				src: ['ts/Main.ts'],
-				dest: 'js/Main.js',
+				dest: 'product/js/Main.js',
 				options: {
 					noImplicitAny: true,
 					module: 'commonjs',
@@ -21,7 +21,7 @@ module.exports = function  (grunt) {
 			},
 			styles: {
 				src: ['sass/style.scss'],
-				dest: 'css/style.css'
+				dest: 'product/css/style.css'
 			}
 		}
 	});
